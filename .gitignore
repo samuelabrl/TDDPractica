@@ -34,6 +34,7 @@ target
 !**/src/main/**/target
 !**/src/test/**/target
 HELP.md
+ClaseRarilla.txt
 
 ## VSCode
 .vscode

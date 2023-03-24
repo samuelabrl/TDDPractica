@@ -26,6 +26,10 @@ public class Carta {
         return nombre;
     }
 
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
     @Override
     public String toString(){
         return "Carta "+ getNombre() + " (" + getAtaque() + "/" + getDefensa() + "/"+ "Posición: "+ posicion.toString() + ")";
