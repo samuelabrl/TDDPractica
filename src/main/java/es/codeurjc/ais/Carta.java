@@ -44,6 +44,14 @@ public class Carta {
         return this.efecto;
     }
 
+    public boolean esInmortal() {
+        return this.efecto == Efecto.INMORTAL;
+    }
+
+    public boolean toqueMortal() {
+        return this.efecto == Efecto.TOQUE_MORTAL;
+    }
+
     @Override
     public String toString(){
         return "Carta "+ getNombre() + " (" + getAtaque() + "/" + getDefensa() + "/" +
