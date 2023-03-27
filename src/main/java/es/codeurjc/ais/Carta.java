@@ -52,6 +52,10 @@ public class Carta {
         return this.efecto == Efecto.TOQUE_MORTAL;
     }
 
+    public boolean presion() {
+        return this.efecto == Efecto.PRESION;
+    }
+
     @Override
     public String toString(){
         return "Carta "+ getNombre() + " (" + getAtaque() + "/" + getDefensa() + "/" +

@@ -1,8 +1,9 @@
 package es.codeurjc.ais;
 
 public enum Efecto {
-    INMORTAL("INMORTAL"),
-    TOQUE_MORTAL("Toque mortal");
+    INMORTAL("Inmortal"),
+    TOQUE_MORTAL("Toque mortal"),
+    PRESION("Presión");
 
     private final String nombre;
 

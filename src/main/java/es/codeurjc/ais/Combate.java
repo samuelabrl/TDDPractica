@@ -7,7 +7,7 @@ public class Combate {
 
   public static String combatir(Carta atacante, Carta defensor) throws IllegalPositionException {
       if (atacante.getPosicion() == Posicion.DEFENSA) {
-          throw new IllegalPositionException("La carta atacante no puede estar en una posición de DEFENSA");
+          throw new IllegalPositionException("La carta atacante no puede estar en una posición de Defensa");
       }
       int puntosAtaque = atacante.getAtaque();
       int puntosDefensor = (defensor.getPosicion() == Posicion.DEFENSA) ? defensor.getDefensa() : defensor.getAtaque();
@@ -21,29 +21,30 @@ public class Combate {
           resultado.append(String.format("Gana Carta %s.", ganador.getNombre()));
           int perdidaVida = Math.abs(puntosAtaque - puntosDefensor);
           if (defensor.getPosicion() == Posicion.ATAQUE) {
-              resultado.append((ganador == atacante) ? " Defensor " : " Atacante ").append(String.format("pierde %d puntos.", perdidaVida)).
-                      append((perdedor.esInmortal()) ? "" : String.format(" Carta %s destruido/a.", perdedor.getNombre()));
+              resultado.append((ganador == atacante) ? " Defensor " : " Atacante ").append(String.format("pierde %d puntos.", (perdedor.presion()) ? perdidaVida / 2 : perdidaVida)).
+                      append((perdedor.esInmortal()) ? "" : (atacante.toqueMortal() && defensor.getDefensa() < 2000) ? " Ambas cartas destruidas." :
+                      String.format(" Carta %s destruido/a.", perdedor.getNombre()));
           }
           else {
-              resultado.append((ganador == defensor) ? String.format(" Atacante pierde %d puntos", perdidaVida) :
-                      (!perdedor.esInmortal()) ? String.format(" Carta %s destruido/a", defensor.getNombre()) : "");
+              resultado.append((ganador == defensor) ? String.format(" Atacante pierde %d puntos.", (perdedor.presion()) ? perdidaVida / 2 : perdidaVida) : "");
+              resultado.append((ganador == atacante && !perdedor.esInmortal() && defensor.toqueMortal() && atacante.getDefensa() < 2000) ? " Ambas cartas destruidas." :
+                      (ganador == atacante && !perdedor.esInmortal() || atacante.toqueMortal() && defensor.getDefensa() < 2000)
+                      ? String.format(" Carta %s destruido/a.", defensor.getNombre()) : "");
           }
       }
       else { // Es empate
-          resultado.append("Empate.").append((defensor.getPosicion() == Posicion.ATAQUE && !atacante.esInmortal()) ? " Ambas cartas destruidas." :
-                  (atacante.esInmortal()) ? String.format(" Carta %s destruido/a.", defensor.getNombre()) : "");
+          resultado.append("Empate.");
+          if ((defensor.getPosicion() == Posicion.ATAQUE && !atacante.esInmortal()) || (atacante.toqueMortal() && defensor.toqueMortal() && defensor.getDefensa() < 2000 && atacante.getDefensa() < 2000)) {
+              resultado.append(" Ambas cartas destruidas.");
+          }
+          else if (atacante.esInmortal()) {
+              resultado.append(String.format(" Carta %s destruido/a.", defensor.getNombre()));
+          }
       }
       return resultado.toString();
   }
 
 }
-
-//RESULTADO =
-//Gana X - Empate
-//? X pierde puntos
-//? Carta X destruida - ?Ambas Cartas Destruidas
-
 /*  Optional<Carta> ganador2 = Optional.ofNullable((puntosAtaque > puntosDefensor) ? atacante :
-                                                    (puntosAtaque == puntosDefensor) ? null : defensor);
-      resultado.append(ganador2.map(carta -> {return "Gana carta" + carta.getNombre();}).orElseGet(() -> {return "Empate";}));
- */
+                                                    (puntosAtaque == puntosDefensor) ? null : defensor); */
+
