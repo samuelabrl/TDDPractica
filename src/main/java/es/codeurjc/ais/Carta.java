@@ -6,22 +6,22 @@ public class Carta {
     private final int ataque;
     private final int defensa;
     private final Posicion posicion;
-    private final Efecto efecto;
+    private final Efecto[] efectos;
 
     public Carta(String nombre, int ataque, int defensa, Posicion posicion) {
         this.nombre = nombre;
         this.ataque = ataque;
         this.defensa = defensa;
         this.posicion = posicion;
-        this.efecto = null;
+        this.efectos = null;
     }
 
-    public Carta(String nombre, int ataque, int defensa, Posicion posicion, Efecto efecto) {
+    public Carta(String nombre, int ataque, int defensa, Posicion posicion, Efecto[] efectos) {
         this.nombre = nombre;
         this.ataque = ataque;
         this.defensa = defensa;
         this.posicion = posicion;
-        this.efecto = efecto;
+        this.efectos = efectos;
     }
 
     public int getDefensa() {
@@ -40,25 +40,57 @@ public class Carta {
         return this.posicion;
     }
 
-    public Efecto getEfecto() {
-        return this.efecto;
+    public Efecto[] getEfectos() {
+        return this.efectos;
     }
 
     public boolean esInmortal() {
-        return this.efecto == Efecto.INMORTAL;
+        if (this.efectos != null) {
+            for (int j = 0; j < this.efectos.length; j++) {
+                if (this.efectos[j] == Efecto.INMORTAL) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
     }
 
     public boolean toqueMortal() {
-        return this.efecto == Efecto.TOQUE_MORTAL;
+        if (this.efectos != null) {
+            for (int j = 0; j < this.efectos.length; j++) {
+                if (this.efectos[j] == Efecto.TOQUE_MORTAL) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean presion() {
-        return this.efecto == Efecto.PRESION;
+        if (this.efectos != null) {
+            for (int j = 0; j < this.efectos.length; j++) {
+                if (this.efectos[j] == Efecto.PRESION) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
-    public String toString(){
-        return "Carta "+ getNombre() + " (" + getAtaque() + "/" + getDefensa() + "/" +
-                "Posición: " + posicion.toString() + "/Efecto: " + ((efecto == null) ? "N/A" : efecto.toString()) + ")";
+    public String toString() {
+        return "Carta " + getNombre() + " (" + getAtaque() + "/" + getDefensa() + "/" +
+                "Posición: " + posicion.toString() + "/Efectos: " + ((efectos == null) ? "N/A" : stringEfectos()) + ")";
+    }
+
+    private String stringEfectos() {
+        String cadenaEfectos = "";
+        for (int i = 1; i < efectos.length; i++) {
+            cadenaEfectos += efectos[i-1].toString() + ", ";
+        }
+        cadenaEfectos +=efectos[efectos.length-1].toString();
+        return cadenaEfectos;
+
     }
 }

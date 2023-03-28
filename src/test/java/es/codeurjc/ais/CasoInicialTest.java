@@ -13,7 +13,7 @@ public class CasoInicialTest {
         Carta dos = new Carta("dos", 1500, 1500, Posicion.ATAQUE);
 
         String resultado= Combate.combatir(uno, dos); //arg1: atacante, arg2: defenso
-        String resultadoEsperado = "Carta uno (2000/2850/Posición: Ataque/Efecto: N/A) vs Carta dos (1500/1500/Posición: Ataque/Efecto: N/A) -> " +
+        String resultadoEsperado = "Carta uno (2000/2850/Posición: Ataque/Efectos: N/A) vs Carta dos (1500/1500/Posición: Ataque/Efectos: N/A) -> " +
                 "Gana Carta uno. Defensor pierde 500 puntos. Carta dos destruido/a.";
 
         assertEquals(resultadoEsperado, resultado);
@@ -25,7 +25,7 @@ public class CasoInicialTest {
         Carta dos = new Carta("dos", 1500, 1500, Posicion.ATAQUE);
 
         String resultado= Combate.combatir(uno, dos); //arg1: atacante, arg2: defenso
-        String resultadoEsperado = "Carta uno (1200/1000/Posición: Ataque/Efecto: N/A) vs Carta dos (1500/1500/Posición: Ataque/Efecto: N/A) -> " +
+        String resultadoEsperado = "Carta uno (1200/1000/Posición: Ataque/Efectos: N/A) vs Carta dos (1500/1500/Posición: Ataque/Efectos: N/A) -> " +
                 "Gana Carta dos. Atacante pierde 300 puntos. Carta uno destruido/a.";
 
         assertEquals(resultadoEsperado, resultado);
@@ -37,7 +37,7 @@ public class CasoInicialTest {
         Carta dos = new Carta("dos", 2000, 1500, Posicion.ATAQUE);
 
         String resultado= Combate.combatir(uno, dos); //arg1: atacante, arg2: defenso
-        String resultadoEsperado = "Carta uno (2000/0/Posición: Ataque/Efecto: N/A) vs Carta dos (2000/1500/Posición: Ataque/Efecto: N/A) -> " +
+        String resultadoEsperado = "Carta uno (2000/0/Posición: Ataque/Efectos: N/A) vs Carta dos (2000/1500/Posición: Ataque/Efectos: N/A) -> " +
                 "Empate. Ambas cartas destruidas.";
 
         assertEquals(resultadoEsperado, resultado);
@@ -49,7 +49,7 @@ public class CasoInicialTest {
         Carta dos = new Carta("dos", 2000, 1500, Posicion.DEFENSA);
 
         String resultado= Combate.combatir(uno, dos); //arg1: atacante, arg2: defenso
-        String resultadoEsperado = "Carta uno (1501/2850/Posición: Ataque/Efecto: N/A) vs Carta dos (2000/1500/Posición: Defensa/Efecto: N/A) -> " +
+        String resultadoEsperado = "Carta uno (1501/2850/Posición: Ataque/Efectos: N/A) vs Carta dos (2000/1500/Posición: Defensa/Efectos: N/A) -> " +
                 "Gana Carta uno. Carta dos destruido/a.";
 
         assertEquals(resultadoEsperado, resultado);
@@ -61,7 +61,7 @@ public class CasoInicialTest {
         Carta dos = new Carta("dos", 0, 3000, Posicion.DEFENSA);
 
         String resultado= Combate.combatir(uno, dos); //arg1: atacante, arg2: defenso
-        String resultadoEsperado = "Carta uno (2000/2850/Posición: Ataque/Efecto: N/A) vs Carta dos (0/3000/Posición: Defensa/Efecto: N/A) -> " +
+        String resultadoEsperado = "Carta uno (2000/2850/Posición: Ataque/Efectos: N/A) vs Carta dos (0/3000/Posición: Defensa/Efectos: N/A) -> " +
                 "Gana Carta dos. Atacante pierde 1000 puntos.";
 
         assertEquals(resultadoEsperado, resultado);
@@ -73,7 +73,7 @@ public class CasoInicialTest {
         Carta dos = new Carta("dos", 2000, 1500, Posicion.DEFENSA);
 
         String resultado= Combate.combatir(uno, dos); //arg1: atacante, arg2: defenso
-        String resultadoEsperado = "Carta uno (1500/2850/Posición: Ataque/Efecto: N/A) vs Carta dos (2000/1500/Posición: Defensa/Efecto: N/A) -> " +
+        String resultadoEsperado = "Carta uno (1500/2850/Posición: Ataque/Efectos: N/A) vs Carta dos (2000/1500/Posición: Defensa/Efectos: N/A) -> " +
                 "Empate.";
 
         assertEquals(resultadoEsperado, resultado);
