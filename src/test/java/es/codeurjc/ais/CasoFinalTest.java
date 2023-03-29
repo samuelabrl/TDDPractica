@@ -131,22 +131,44 @@ public class CasoFinalTest {
     @Test
     void caso29() throws IllegalPositionException {
         Carta uno = new Carta("uno", 6000, 1800, Posicion.ATAQUE, new Efecto[]{Efecto.TOQUE_MORTAL, Efecto.PRESION, Efecto.INMORTAL});
-        Carta dos = new Carta("dos", 3000, 1000, Posicion.DEFENSA, new Efecto[]{Efecto.INMORTAL, Efecto.PRESION, Efecto.TOQUE_MORTAL});
+        Carta dos = new Carta("dos", 6000, 3000, Posicion.ATAQUE, new Efecto[]{Efecto.INMORTAL, Efecto.PRESION, Efecto.TOQUE_MORTAL});
 
         String resultado = Combate.combatir(uno, dos);
-        String resultadoEsperado = "Carta uno (6000/1800/Posición: Ataque/Efectos: Toque mortal, Presión, Inmortal) vs Carta dos (3000/1000/Posición: Defensa/Efectos: Inmortal, Presión, Toque mortal) -> " +
-                "Gana Carta uno. Defensor pierde 1500 puntos.";
+        String resultadoEsperado = "Carta uno (6000/1800/Posición: Ataque/Efectos: Toque mortal, Presión, Inmortal) vs Carta dos (6000/3000/Posición: Ataque/Efectos: Inmortal, Presión, Toque mortal) -> " +
+                "Empate.";
 
         assertEquals(resultadoEsperado, resultado);
     }
     @Test
     void caso30() throws IllegalPositionException {
-        Carta uno = new Carta("uno", 3000, 1800, Posicion.ATAQUE, new Efecto[]{Efecto.TOQUE_MORTAL, Efecto.PRESION, Efecto.INMORTAL});
-        Carta dos = new Carta("dos", 6000, 1000, Posicion.DEFENSA, new Efecto[]{Efecto.INMORTAL, Efecto.PRESION, Efecto.TOQUE_MORTAL});
+        Carta uno = new Carta("uno", 6000, 1800, Posicion.ATAQUE, new Efecto[]{Efecto.TOQUE_MORTAL, Efecto.PRESION, Efecto.INMORTAL});
+        Carta dos = new Carta("dos", 3000, 1000, Posicion.DEFENSA, new Efecto[]{Efecto.INMORTAL, Efecto.PRESION, Efecto.TOQUE_MORTAL});
 
         String resultado = Combate.combatir(uno, dos);
-        String resultadoEsperado = "Carta uno (3000/1800/Posición: Ataque/Efectos: Toque mortal, Presión, Inmortal) vs Carta dos (6000/1000/Posición: Defensa/Efectos: Inmortal, Presión, Toque mortal) -> " +
-                "Gana Carta dos. Atacante pierde 1500 puntos.";
+        String resultadoEsperado = "Carta uno (6000/1800/Posición: Ataque/Efectos: Toque mortal, Presión, Inmortal) vs Carta dos (3000/1000/Posición: Defensa/Efectos: Inmortal, Presión, Toque mortal) -> " +
+                "Gana Carta uno.";
+
+        assertEquals(resultadoEsperado, resultado);
+    }
+    @Test
+    void caso31() throws IllegalPositionException {
+        Carta uno = new Carta("uno", 1000, 1800, Posicion.ATAQUE, new Efecto[]{Efecto.TOQUE_MORTAL, Efecto.PRESION, Efecto.INMORTAL});
+        Carta dos = new Carta("dos", 3000, 5000, Posicion.DEFENSA, new Efecto[]{Efecto.INMORTAL, Efecto.PRESION, Efecto.TOQUE_MORTAL});
+
+        String resultado = Combate.combatir(uno, dos);
+        String resultadoEsperado = "Carta uno (1000/1800/Posición: Ataque/Efectos: Toque mortal, Presión, Inmortal) vs Carta dos (3000/5000/Posición: Defensa/Efectos: Inmortal, Presión, Toque mortal) -> " +
+                "Gana Carta dos. Atacante pierde 2000 puntos.";
+
+        assertEquals(resultadoEsperado, resultado);
+    }
+    @Test
+    void caso32() throws IllegalPositionException {
+        Carta uno = new Carta("uno", 3000, 1800, Posicion.ATAQUE, new Efecto[]{Efecto.TOQUE_MORTAL, Efecto.PRESION, Efecto.INMORTAL});
+        Carta dos = new Carta("dos", 6000, 3000, Posicion.DEFENSA, new Efecto[]{Efecto.INMORTAL, Efecto.PRESION, Efecto.TOQUE_MORTAL});
+
+        String resultado = Combate.combatir(uno, dos);
+        String resultadoEsperado = "Carta uno (3000/1800/Posición: Ataque/Efectos: Toque mortal, Presión, Inmortal) vs Carta dos (6000/3000/Posición: Defensa/Efectos: Inmortal, Presión, Toque mortal) -> " +
+                "Empate.";
 
         assertEquals(resultadoEsperado, resultado);
     }

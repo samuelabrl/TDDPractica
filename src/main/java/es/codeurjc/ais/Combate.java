@@ -35,7 +35,9 @@ public class Combate {
             }
         } else { // Es empate
             resultado.append("Empate.");
-            if ((defensor.getPosicion() == Posicion.ATAQUE && !atacante.esInmortal()) || (atacante.toqueMortal() && defensor.toqueMortal() && defensor.getDefensa() < 2000 && atacante.getDefensa() < 2000)) {
+            if(atacante.esInmortal() && defensor.esInmortal()) {
+                resultado.append("");
+            }else if ((defensor.getPosicion() == Posicion.ATAQUE && !atacante.esInmortal()) || (atacante.toqueMortal() && defensor.toqueMortal() && defensor.getDefensa() < 2000 && atacante.getDefensa() < 2000)) {
                 resultado.append(" Ambas cartas destruidas.");
             } else if (atacante.esInmortal()) {
                 resultado.append(String.format(" Carta %s destruido/a.", defensor.getNombre()));
